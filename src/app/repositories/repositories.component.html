@@ -1,3 +1,5 @@
-<ul>
-    <li><a routerLink="/pullRequestsByRepo">Repository</a></li>
+<ul *ngIf="fiveUsers">
+    <li *ngFor="let fiveUser of fiveUsers.data">
+        <a routerLink="/pullRequestsByRepo">{{ fiveUser.first_name }} {{ fiveUser.last_name }}</a>
+    </li>
 </ul>

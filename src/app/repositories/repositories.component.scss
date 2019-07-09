@@ -1,0 +1,22 @@
+ul {
+    list-style-type: none;
+    margin: 0px 0px 40px 0px;
+    padding: 0;
+
+    li {
+        background: rgb(238, 238, 238);
+        padding: 1.0em;
+        border-radius: 20px;
+        margin: 0px 0px 10px 0px;
+        grid-template-columns: 60px auto;
+
+        a {
+            font-weight: bold;
+            margin-left: 20px;
+            font-size: 20px;
+            margin: 0px 0px 0px 0px;
+            color: #091827;
+            font-weight: normal;
+        }       
+    }
+}
