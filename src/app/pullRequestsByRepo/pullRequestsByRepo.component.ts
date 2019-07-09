@@ -114,6 +114,7 @@ export class PullRequestsByRepoComponent implements OnInit, AfterViewInit {
           fontSize: 25,
           fontFamily: 'Montserrat',
           fontColor: 'black',
+          fontStyle: 'normal',
           padding: 40,
         },
         legend: {
