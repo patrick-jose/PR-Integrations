@@ -1,0 +1,44 @@
+<h1>Pull Requests</h1>
+
+<div>
+  <div class="panel-group">
+    <div class="panel panel-opened">
+      <div class="panel-heading">Abertos</div>
+      <div class="panel-body">2</div>
+    </div>
+    
+    <div class="panel panel-rejected">
+      <div class="panel-heading">Rejeitados</div>
+      <div class="panel-body">0</div>
+    </div>
+    
+    <div class="panel panel-closed">
+      <div class="panel-heading">Fechados</div>
+      <div class="panel-body">3</div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-bottom: 60px">
+  <canvas #canvas id="canvas"></canvas>
+</div>
+
+<ul *ngIf="fiveUsers">
+  <li *ngFor="let fiveUser of fiveUsers.data">
+      <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <p>{{ fiveUser.first_name }} {{ fiveUser.last_name }}</p>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <ul *ngIf="threeUsers">
+              <li *ngFor="let threeUser of threeUsers.data">  
+                <img [src]="threeUser.avatar">
+                <p>{{ threeUser.email }}</p>
+              </li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>  
+  </li>
+</ul>
