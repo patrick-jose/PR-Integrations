@@ -42,16 +42,6 @@ export class PullRequestsComponent implements OnInit, AfterViewInit {
       return moment().add(days, 'd').format(timeFormat);
     }
 
-    const colors = {
-      red: 'rgb(255, 99, 132)',
-      orange: 'rgb(255, 159, 64)',
-      yellow: 'rgb(255, 205, 86)',
-      green: 'rgb(75, 192, 192)',
-      blue: 'rgb(54, 162, 235)',
-      purple: 'rgb(153, 102, 255)',
-      grey: 'rgb(201, 203, 207)'
-    };
-
     this.config = {
       type: 'line',
       data: {
@@ -68,6 +58,10 @@ export class PullRequestsComponent implements OnInit, AfterViewInit {
           label: ' PRs Abertos',
           backgroundColor: 'rgb(0, 173, 210)',
           borderColor: 'rgb(0, 140, 175)',
+          borderWidth: 3,
+          pointRadius: 2,
+          pointHoverRadius: 4,
+          pointHitRadius: 2,
           fill: false,
           data: [{
             x: newDateString(-24),
@@ -114,6 +108,7 @@ export class PullRequestsComponent implements OnInit, AfterViewInit {
           fontSize: 25,
           fontFamily: 'Montserrat',
           fontColor: 'black',
+          fontStyle: 'normal',
           padding: 40,
         },
         legend: {

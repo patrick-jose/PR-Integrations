@@ -2,7 +2,6 @@ header {
     background: #091827;
 
     .logo {
-        font-weight: bold;
         font-size: 30px;
     }
 
@@ -18,9 +17,9 @@ header {
                 float: left;
 
                 a {
-                    padding: 1.0em;
-                    text-transform: uppercase;
-                    font-size: .8em;
+                    padding: 15px;
+                    font-size: 0.8em;
+                    margin: 15px;
 
                     &:hover {
                         background: #00add2;

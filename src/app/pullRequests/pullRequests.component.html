@@ -25,20 +25,20 @@
 
 <ul *ngIf="fiveUsers">
   <li *ngFor="let fiveUser of fiveUsers.data">
-      <ngb-accordion #acc="ngbAccordion">
-        <ngb-panel>
-          <ng-template ngbPanelTitle>
-            <p>{{ fiveUser.first_name }} {{ fiveUser.last_name }}</p>
-          </ng-template>
-          <ng-template ngbPanelContent>
-            <ul *ngIf="threeUsers">
-              <li *ngFor="let threeUser of threeUsers.data">  
-                <img [src]="threeUser.avatar">
-                <p>{{ threeUser.email }}</p>
-              </li>
-            </ul>
-          </ng-template>
-        </ngb-panel>
-      </ngb-accordion>  
+    <ngb-accordion #acc="ngbAccordion">
+      <ngb-panel>
+        <ng-template ngbPanelTitle>
+          <p>{{ fiveUser.first_name }} {{ fiveUser.last_name }}</p>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <ul *ngIf="threeUsers">
+            <li *ngFor="let threeUser of threeUsers.data">  
+              <img [src]="threeUser.avatar">
+              <p>{{ threeUser.email }}</p>
+            </li>
+          </ul>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>  
   </li>
 </ul>
