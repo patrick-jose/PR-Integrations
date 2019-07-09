@@ -7,16 +7,17 @@ header {
 
     img {
         width: 40px;
+        height: 40px;
         float: left;
         display: block;
     }
 
     nav {
         justify-self: right;
-    
+
         ul {
             list-style-type: none;
-            margin: 0; 
+            margin: 0;
             padding: 7px 0px 0px 10px;
 
             li {
