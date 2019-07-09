@@ -1,4 +1,4 @@
-<h1>Pull Requests</h1>
+<h1>{{ repository }}</h1>
 
 <div>
   <div class="panel-group">
@@ -6,12 +6,12 @@
       <div class="panel-heading">Abertos</div>
       <div class="panel-body">2</div>
     </div>
-  
+
     <div class="panel panel-rejected">
       <div class="panel-heading">Rejeitados</div>
       <div class="panel-body">0</div>
     </div>
-  
+
     <div class="panel panel-closed">
       <div class="panel-heading">Fechados</div>
       <div class="panel-body">3</div>
@@ -28,14 +28,14 @@
           </ng-template>
           <ng-template ngbPanelContent>
             <ul *ngIf="threeUsers">
-              <li *ngFor="let threeUser of threeUsers.data">  
+              <li *ngFor="let threeUser of threeUsers.data">
                 <img [src]="threeUser.avatar">
                 <p>{{ threeUser.email }}</p>
               </li>
             </ul>
           </ng-template>
         </ngb-panel>
-      </ngb-accordion>  
+      </ngb-accordion>
   </li>
 </ul>
 

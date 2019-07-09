@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angula
 import { DataService } from '../data.service';
 import { Chart, ChartConfiguration } from 'chart.js';
 import * as moment from 'moment';
+import { RepositoriesComponent } from '../repositories/repositories.component';
 
 @Component({
   selector: 'app-pull-requests-by-repo',
@@ -16,10 +17,12 @@ export class PullRequestsByRepoComponent implements OnInit, AfterViewInit {
   chart: Chart;
   config: ChartConfiguration;
   color = Chart.helpers.color;
+  repository: string;
 
   constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.repository = this.data.receiveChosenRepo();
     this.data.get3Users().subscribe(data => {
       this.fiveUsers = data;
     });
@@ -29,7 +32,6 @@ export class PullRequestsByRepoComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-
     const timeFormat = 'MM/DD/YYYY HH:mm';
 
     function randomScalingFactor() {

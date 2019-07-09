@@ -1,5 +1,7 @@
 <ul *ngIf="fiveUsers">
     <li *ngFor="let fiveUser of fiveUsers.data">
-        <a routerLink="/pullRequestsByRepo">{{ fiveUser.first_name }} {{ fiveUser.last_name }}</a>
+        <a (click)="clickRepo(fiveUser.first_name + ' ' + fiveUser.last_name)" routerLink="/pullRequestsByRepo">
+          {{ fiveUser.first_name }} {{ fiveUser.last_name }}
+        </a>
     </li>
 </ul>

@@ -6,6 +6,7 @@ import { DataService } from '../data.service';
   templateUrl: './repositories.component.html',
   styleUrls: ['./repositories.component.scss']
 })
+
 export class RepositoriesComponent implements OnInit {
 
   fiveUsers: object;
@@ -22,4 +23,7 @@ export class RepositoriesComponent implements OnInit {
     });
   }
 
+  clickRepo(repo: string) {
+    this.data.sendChosenRepo(repo);
+  }
 }
