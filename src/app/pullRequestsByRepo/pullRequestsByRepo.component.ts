@@ -97,11 +97,12 @@ export class PullRequestsByRepoComponent implements OnInit, AfterViewInit {
           display: false
         },
         tooltips: {
-          backgroundColor: 'rgb(9, 24, 39, 0.8)',
+          backgroundColor: 'rgb(0, 173, 210, 0.6)',
           displayColors: false,
-          titleFontColor: 'rgb(0, 173, 210, 0.8)',
           bodyFontFamily: 'Montserrat',
           titleFontFamily: 'Montserrat',
+          bodyFontColor: 'rgb(9, 24, 39)',
+          titleFontColor: 'rgb(9, 24, 39)',
         },
         scales: {
           xAxes: [{
