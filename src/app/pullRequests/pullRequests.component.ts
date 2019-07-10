@@ -16,6 +16,8 @@ export class PullRequestsComponent implements OnInit, AfterViewInit {
   chart: Chart;
   config: ChartConfiguration;
   color = Chart.helpers.color;
+  chartData = [];
+  openedPRs: number;
 
   constructor(private data: DataService) { }
 
@@ -30,10 +32,10 @@ export class PullRequestsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    const timeFormat = 'MM/DD/YYYY HH:mm';
+    const timeFormat = 'DD/MM/YYYY HH:mm';
 
     function randomScalingFactor() {
-      return Math.floor(Math.random() * 25);
+      return Math.floor(Math.random() * 50);
     }
     function newDate(days: moment.DurationInputArg1) {
       return newDateString(moment().add(days, 'd').toDate());
@@ -41,6 +43,19 @@ export class PullRequestsComponent implements OnInit, AfterViewInit {
     function newDateString(days) {
       return moment().add(days, 'd').format(timeFormat);
     }
+
+    const PRs = [];
+    for (let index = 0; index >= -10; index--) {
+      PRs.push(randomScalingFactor());
+      this.chartData.push(
+        {
+          x: newDateString(index),
+          y: PRs[PRs.length - 1]
+        }
+      );
+    }
+
+    Promise.resolve(null).then(() => this.openedPRs = PRs[0]);
 
     this.config = {
       type: 'line',
@@ -55,7 +70,7 @@ export class PullRequestsComponent implements OnInit, AfterViewInit {
           newDate(6)
         ],
         datasets: [{
-          label: ' PRs Abertos',
+          label: 'PRs Abertos',
           backgroundColor: 'rgb(0, 173, 210)',
           borderColor: 'rgb(0, 140, 175)',
           borderWidth: 3,
@@ -63,42 +78,7 @@ export class PullRequestsComponent implements OnInit, AfterViewInit {
           pointHoverRadius: 4,
           pointHitRadius: 2,
           fill: false,
-          data: [{
-            x: newDateString(-24),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-21),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-18),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-15),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-12),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-9),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-6),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-3),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(0),
-            y: randomScalingFactor()
-          }],
+          data: this.chartData,
         }]
       },
       options: {
@@ -115,7 +95,11 @@ export class PullRequestsComponent implements OnInit, AfterViewInit {
           display: false
         },
         tooltips: {
-          backgroundColor: 'rgb(9, 24, 39)',
+          backgroundColor: 'rgb(9, 24, 39, 0.8)',
+          displayColors: false,
+          titleFontColor: 'rgb(0, 173, 210, 0.8)',
+          bodyFontFamily: 'Montserrat',
+          titleFontFamily: 'Montserrat',
         },
         scales: {
           xAxes: [{
@@ -125,7 +109,7 @@ export class PullRequestsComponent implements OnInit, AfterViewInit {
             },
             time: {
               parser: timeFormat,
-              tooltipFormat: 'll HH:mm'
+              tooltipFormat: 'DD MMM YYYY'
             },
             scaleLabel: {
               display: false,

@@ -4,17 +4,17 @@
   <div class="panel-group">
     <div class="panel panel-opened">
       <div class="panel-heading">Abertos</div>
-      <div class="panel-body">2</div>
+      <div class="panel-body">{{ openedPRs }}</div>
     </div>
-    
+
     <div class="panel panel-rejected">
       <div class="panel-heading">Rejeitados</div>
-      <div class="panel-body">0</div>
+      <div class="panel-body">15</div>
     </div>
-    
+
     <div class="panel panel-closed">
       <div class="panel-heading">Fechados</div>
-      <div class="panel-body">3</div>
+      <div class="panel-body">6</div>
     </div>
   </div>
 </div>
@@ -32,13 +32,13 @@
         </ng-template>
         <ng-template ngbPanelContent>
           <ul *ngIf="threeUsers">
-            <li *ngFor="let threeUser of threeUsers.data">  
+            <li *ngFor="let threeUser of threeUsers.data">
               <img [src]="threeUser.avatar">
               <p>{{ threeUser.email }}</p>
             </li>
           </ul>
         </ng-template>
       </ngb-panel>
-    </ngb-accordion>  
+    </ngb-accordion>
   </li>
 </ul>

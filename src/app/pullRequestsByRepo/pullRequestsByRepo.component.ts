@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angula
 import { DataService } from '../data.service';
 import { Chart, ChartConfiguration } from 'chart.js';
 import * as moment from 'moment';
-import { RepositoriesComponent } from '../repositories/repositories.component';
 
 @Component({
   selector: 'app-pull-requests-by-repo',
@@ -18,10 +17,13 @@ export class PullRequestsByRepoComponent implements OnInit, AfterViewInit {
   config: ChartConfiguration;
   color = Chart.helpers.color;
   repository: string;
+  chartData = [];
+  openedPRs: number;
 
   constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.openedPRs = 0;
     this.repository = this.data.receiveChosenRepo();
     this.data.get3Users().subscribe(data => {
       this.fiveUsers = data;
@@ -35,7 +37,7 @@ export class PullRequestsByRepoComponent implements OnInit, AfterViewInit {
     const timeFormat = 'MM/DD/YYYY HH:mm';
 
     function randomScalingFactor() {
-      return Math.floor(Math.random() * 25);
+      return Math.floor(Math.random() * 10);
     }
     function newDate(days: moment.DurationInputArg1) {
       return newDateString(moment().add(days, 'd').toDate());
@@ -44,15 +46,18 @@ export class PullRequestsByRepoComponent implements OnInit, AfterViewInit {
       return moment().add(days, 'd').format(timeFormat);
     }
 
-    const colors = {
-      red: 'rgb(255, 99, 132)',
-      orange: 'rgb(255, 159, 64)',
-      yellow: 'rgb(255, 205, 86)',
-      green: 'rgb(75, 192, 192)',
-      blue: 'rgb(54, 162, 235)',
-      purple: 'rgb(153, 102, 255)',
-      grey: 'rgb(201, 203, 207)'
-    };
+    const PRs = [];
+    for (let index = 0; index >= -10; index--) {
+      PRs.push(randomScalingFactor());
+      this.chartData.push(
+        {
+          x: newDateString(index),
+          y: PRs[PRs.length - 1]
+        }
+      );
+    }
+
+    Promise.resolve(null).then(() => this.openedPRs = PRs[0]);
 
     this.config = {
       type: 'line',
@@ -67,46 +72,15 @@ export class PullRequestsByRepoComponent implements OnInit, AfterViewInit {
           newDate(6)
         ],
         datasets: [{
-          label: ' PRs Abertos',
+          label: 'PRs Abertos',
           backgroundColor: 'rgb(0, 173, 210)',
           borderColor: 'rgb(0, 140, 175)',
+          borderWidth: 3,
+          pointRadius: 2,
+          pointHoverRadius: 4,
+          pointHitRadius: 2,
           fill: false,
-          data: [{
-            x: newDateString(-24),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-21),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-18),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-15),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-12),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-9),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-6),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(-3),
-            y: randomScalingFactor()
-          },
-          {
-            x: newDateString(0),
-            y: randomScalingFactor()
-          }],
+          data: this.chartData,
         }]
       },
       options: {
@@ -123,7 +97,11 @@ export class PullRequestsByRepoComponent implements OnInit, AfterViewInit {
           display: false
         },
         tooltips: {
-          backgroundColor: 'rgb(9, 24, 39)',
+          backgroundColor: 'rgb(9, 24, 39, 0.8)',
+          displayColors: false,
+          titleFontColor: 'rgb(0, 173, 210, 0.8)',
+          bodyFontFamily: 'Montserrat',
+          titleFontFamily: 'Montserrat',
         },
         scales: {
           xAxes: [{
@@ -133,7 +111,7 @@ export class PullRequestsByRepoComponent implements OnInit, AfterViewInit {
             },
             time: {
               parser: timeFormat,
-              tooltipFormat: 'll HH:mm'
+              tooltipFormat: 'DD MMM YYYY'
             },
             scaleLabel: {
               display: false,
